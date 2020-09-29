@@ -1,9 +1,22 @@
-const { Client, Pool } = require('pg');
+// const { Pool } = require('pg');
+const { databaseUrl } = require('../config');
+const { Sequelize, DataTypes } = require('sequelize');
 
-const connectionString = 'postgresql://me:password@localhost:5432/api';
+const db = new Sequelize(databaseUrl);
 
-const pool = new Pool({ connectionString });
+//Models
+const User = db.define('User', {
+  name: { type: DataTypes.STRING, allowNull: false },
+  email: { type: DataTypes.STRING, allowNull: false },
+  password: { type: DataTypes.STRING, allowNull: false },
+  nickName: { type: DataTypes.STRING, allowNull: true },
+});
+
+/* const pool = new Pool({ connectionString: databaseUrl });
+
+pool.on('connect', () => console.log('connected tod db'));
 
 module.exports = {
   query: (text, params) => pool.query(text, params),
 };
+ */

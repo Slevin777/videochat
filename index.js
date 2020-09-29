@@ -2,28 +2,7 @@ const express = require('express');
 const socket = require('socket.io');
 const https = require('https');
 const fs = require('fs');
-const db = require('./db');
-
-const app = express();
-
-app.use(express.static('public'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
-//routes
-app.get('/', (req, res) => {
-  res.send(`<h1>Hello World!</h1>`);
-});
-
-app.get('/us', async (req, res) => {
-  try {
-    const { rows } = await db.query('SELECT * FROM users');
-    console.log(rows);
-    res.status(200).send(rows);
-  } catch (error) {
-    console.log(error);
-  }
-});
+const app = require('./server');
 
 //server
 // const server = https
