@@ -12,23 +12,31 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+
+      this.messageAssociation = this.hasMany(models.Message, {
+        foreignKey: 'userId',
+        as: 'messages',
+        onDelete: 'CASCADE',
+      });
+
+      this.roomAssociation = this.hasMany(models.ChatRoom);
     }
 
     async createAccessToken() {
-      let { id, name, email } = this;
-      let accessToken = jwt.sign(
+      const { id, name, email } = this;
+      const accessToken = jwt.sign(
         { user: { id, name, email } },
-        accessTokenSecret,
-        {
+        accessTokenSecret
+        /* {
           expiresIn: '10m',
-        }
+        } */
       );
       return accessToken;
     }
 
     async createRefreshToken() {
-      let { id, name, email } = this;
-      let refreshToken = jwt.sign(
+      const { id, name, email } = this;
+      const refreshToken = jwt.sign(
         { user: { id, name, email } },
         refreshTokenSecret,
         {
