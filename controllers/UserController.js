@@ -13,7 +13,9 @@ const createUser = async (req, res) => {
 
     await user.save();
 
-    res.status(201).send(user);
+    let accessToken = await user.createAccessToken();
+
+    res.status(201).send(accessToken);
   } catch (error) {
     console.log(error);
   }
@@ -21,10 +23,25 @@ const createUser = async (req, res) => {
 
 const getAllUsers = async (req, res) => {
   try {
-    const users = await User.findAll({
-      attributes: { exclude: ['password'] },
-    });
-    res.status(200).send(users);
+    const allUsers = await User.findAll({
+      include: ['rooms'],
+      order: [['name', 'ASC']],
+      attributes: {
+        exclude: ['password']
+      },
+    })
+
+    return allUsers
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const getUserById = async (id) => {
+  try {
+    const user = await User.findByPk(id, { include: 'rooms' });
+
+    return user
   } catch (error) {
     console.log(error);
   }
@@ -32,5 +49,6 @@ const getAllUsers = async (req, res) => {
 
 module.exports = {
   createUser,
+  getUserById,
   getAllUsers,
 };

@@ -14,7 +14,7 @@ const login = async (req, res) => {
   let accessToken = await user.createAccessToken();
   // let refreshToken = await user.createRefreshToken();
 
-  res.status(200).send({ accessToken /* , refreshToken */ });
+  res.status(200).send(accessToken /* , refreshToken */);
 };
 
 module.exports = {

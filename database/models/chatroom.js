@@ -10,14 +10,16 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
 
-      this.messageAssociation = this.hasMany(models.Message, {
+      this.Message = this.hasMany(models.Message, {
         foreignKey: 'roomId',
         as: 'messages',
         onDelete: 'CASCADE',
       });
 
-      this.userAssociation = this.belongsToMany(models.User, {
+      this.User = this.belongsToMany(models.User, {
         through: 'UserRoom',
+        as: 'users',
+        foreignKey: 'roomId'
       });
     }
   }
