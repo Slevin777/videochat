@@ -5,7 +5,7 @@ const cors = require('cors');
 // const fs = require('fs');
 
 const corsOptions = {
-  origin: 'https://videofront212.herokuapp.com/',
+  origin: 'https://videofront212.herokuapp.com',
   optionsSuccessStatus: 200
 }
 
