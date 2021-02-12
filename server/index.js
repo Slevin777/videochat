@@ -1,20 +1,12 @@
 const express = require('express');
 const routes = require('../routes');
 const cors = require('cors');
-// const https = require('https');
-// const fs = require('fs');
-
-const corsOptions = {
-  origin: '*',
-  optionsSuccessStatus: 200
-}
 
 const app = express();
+app.use(cors());
 app.use(express.static('public'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors(corsOptions));
-app.options('*', cors());
 //routes
 app.use('/', routes);
 
