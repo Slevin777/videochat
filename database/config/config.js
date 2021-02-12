@@ -2,7 +2,7 @@ const { databaseUrl } = require('../../config');
 
 module.exports = {
   development: {
-    url: databaseUrl,
+    url: databaseUrlDev,
     dialect: 'postgres',
   },
   test: {
