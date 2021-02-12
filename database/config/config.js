@@ -1,4 +1,4 @@
-const { databaseUrl } = require('../../config');
+const { databaseUrl, databaseUrlDev } = require('../../config');
 
 module.exports = {
   development: {
