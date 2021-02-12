@@ -1,6 +1,4 @@
 const express = require('express');
-const https = require('https');
-const fs = require('fs');
 const server = require('./server');
 const io = require('socket.io')(server);
 const WebSockets = require('./utils/WebSockets');
@@ -71,7 +69,7 @@ findAll() */
 let userOnline = [];
 
 io.on('connection', async (client) => {
-  console.log('connected')
+  console.log('text connected')
 
   const allUsers = await UserController.getAllUsers()
   client.emit('all_users', allUsers)
@@ -110,38 +108,37 @@ io.on('connection', async (client) => {
     userOnline = userOnline.filter((user) => user.socketId !== client.id);
   });
 
-  /*  client.on('identity', (user) => {
-     users.push({
-       socketId: client.id,
-       userId: user.id,
-     });
-     io.emit('online_users', users);
-   }); */
+
+  //Video
+  client.on('call-user', data => {
+    console.log('call-user', data)
+    client
+      .to(data.to)
+      .emit('call-made', {
+        offer: data.offer
+      })
+  })
+
+  client.on('make-answer', data => {
+    console.log('make-answer', data)
+    client
+      .to(data.to)
+      .emit('answer-made', {
+        answer: data.answer
+      })
+  })
+
+  client.on('ice-candidate', data => {
+    client.to(data.to).emit('ice-candidate', data.candidate)
+  })
 
 });
-
-/* ChatRoom.bulkCreate([
-  {
-    title: 'one',
-    type: 1,
-  },
-  {
-    title: 'two',
-    type: 1,
-  },
-])
-  .then(rooms => {
-    console.log('rooms', rooms)
-    User.findAll({ where: { id: [1, 2] }, include: ['rooms'] }).then(users => console.log('users', users))
-  }) */
-
-
 
 
 //video socket setup
 /* let activeSockets = [];
-io.on('connection', (socket) => {
-  console.log('socket connected');
+io.of('/video').on('connection', (socket) => {
+  console.log('vidoe connected');
   const existingSocket = activeSockets.find(
     (existingSocket) => existingSocket === socket.id
   );
