@@ -1,5 +1,5 @@
 // const { Pool } = require('pg');
-const { databaseUrl } = require('../config');
+/* const { databaseUrl } = require('../config');
 const { Sequelize, DataTypes } = require('sequelize');
 
 const db = new Sequelize(databaseUrl);
@@ -10,7 +10,7 @@ const User = db.define('User', {
   email: { type: DataTypes.STRING, allowNull: false },
   password: { type: DataTypes.STRING, allowNull: false },
   nickName: { type: DataTypes.STRING, allowNull: true },
-});
+}); */
 
 /* const pool = new Pool({ connectionString: databaseUrl });
 

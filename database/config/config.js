@@ -4,6 +4,9 @@ module.exports = {
   development: {
     url: databaseUrlDev,
     dialect: 'postgres',
+    dialectOptions: {
+      ssl: true
+    }
   },
   test: {
     url: databaseUrl,
@@ -12,5 +15,8 @@ module.exports = {
   production: {
     url: databaseUrl,
     dialect: 'postgres',
+    dialectOptions: {
+      ssl: true
+    }
   },
 };
