@@ -17,7 +17,7 @@ const createUser = async (req, res) => {
 
     res.status(201).send(accessToken);
   } catch (error) {
-    console.log(error);
+    console.log(error.message);
   }
 };
 
@@ -33,7 +33,7 @@ const getAllUsers = async (req, res) => {
 
     return allUsers
   } catch (error) {
-    console.log(error);
+    console.log(error.message);
   }
 };
 
@@ -43,7 +43,7 @@ const getUserById = async (id) => {
 
     return user
   } catch (error) {
-    console.log(error);
+    console.log(error.message);
   }
 };
 
