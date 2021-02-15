@@ -111,7 +111,6 @@ io.on('connection', async (client) => {
 
   //Video
   client.on('call-user', data => {
-    console.log('call-user', data)
     client
       .to(data.to)
       .emit('call-made', {
@@ -120,7 +119,6 @@ io.on('connection', async (client) => {
   })
 
   client.on('make-answer', data => {
-    console.log('make-answer', data)
     client
       .to(data.to)
       .emit('answer-made', {

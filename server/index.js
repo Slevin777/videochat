@@ -9,7 +9,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use((req, res, next) => {
-  console.log(req)
   res.setHeader('Access-Control-Allow-Origin', '*');
 
 
