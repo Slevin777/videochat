@@ -16,7 +16,10 @@ module.exports = {
     url: databaseUrl,
     dialect: 'postgres',
     dialectOptions: {
-      ssl: true
+      ssl: {
+        required: true,
+        rejectUnauthorized: false
+      }
     }
   },
 };
