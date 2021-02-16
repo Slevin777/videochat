@@ -1,12 +1,12 @@
-const express = require('express');
 const server = require('./server');
 const io = require('socket.io')(server);
-const WebSockets = require('./utils/WebSockets');
-const { User, ChatRoom, Message } = require('./database/models');
 const RoomController = require('./controllers/RoomController');
 const UserController = require('./controllers/UserController');
-const message = require('./database/models/message');
 const MessageController = require('./controllers/MessageController');
+// const express = require('express');
+// const WebSockets = require('./utils/WebSockets');
+// const { User, ChatRoom, Message } = require('./database/models');
+// const message = require('./database/models/message');
 
 // const db = require('./database/models')
 // db.sequelize.sync({ force: true })

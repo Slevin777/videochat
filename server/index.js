@@ -1,6 +1,6 @@
 const express = require('express');
 const routes = require('../routes');
-// const cors = require('cors');
+const cors = require('cors');
 
 const app = express();
 // app.use(cors());
@@ -8,7 +8,7 @@ app.use(express.static('public'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use((req, res, next) => {
+/* app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
 
 
@@ -22,7 +22,9 @@ app.use((req, res, next) => {
   // to the API (e.g. in case you use sessions)
   // res.setHeader('Access-Control-Allow-Credentials', true);
   next();
-})
+}) */
+
+app.use(cors())
 //routes
 app.use('/', routes);
 
